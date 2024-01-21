@@ -16,6 +16,20 @@ const searchStelle = async (searchInput: searchType) => {
 	)
 }
 
+const searchStellePagination = async (paginationInput: string) => {
+    return StelleAPI.searchStellePagination(paginationInput).then(
+        result => {
+            return result;
+        }
+    ).catch(
+		(errorMsg) => {
+			ActivityService.displayErrorMessage(errorMsg.message)
+			throw new Error(errorMsg.message)
+		}
+	)
+}
+
+
 const transformData = (data: any): StellenResult => {
     return {
         count: data.count,
@@ -36,5 +50,5 @@ const transformData = (data: any): StellenResult => {
 
 
 export const StelleService = {
-    searchStelle, transformData
+    searchStelle, transformData, searchStellePagination
 }

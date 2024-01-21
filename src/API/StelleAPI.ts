@@ -9,6 +9,15 @@ const searchStelle = async (searchInput: searchType) => {
 )
 }
 
+const searchStellePagination = async(paginationInput: string) => {
+    return axios.get(paginationInput).then(response => {return response.data}).catch(
+        (error) => {
+            throw new Error(error.response.data.message || 'Failed to search Stelle');
+    }
+)
+}
+
 export const StelleAPI  = {
-    searchStelle
+    searchStelle,
+    searchStellePagination
 }

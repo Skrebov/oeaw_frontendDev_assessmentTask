@@ -13,7 +13,7 @@ function App() {
       <h1 className="text-3xl text-center">Search Stelle</h1>
       <div className="flex flex-col w-[60%] justify-center ">
        <SearchForm onFetch={setResponse}></SearchForm>
-       {response && <ResultTable input={response}></ResultTable>}
+       {response && <ResultTable onFetch={setResponse} input={response}></ResultTable>}
       </div>
     </div>
   );
