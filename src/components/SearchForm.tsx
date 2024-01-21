@@ -25,7 +25,7 @@ export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
   };
 
   const fetchResults = async () => {
-    onFetch(await StelleService.searchStelle(searchTerm));
+    onFetch(StelleService.transformData(await StelleService.searchStelle(searchTerm)));
   };
 
   //debouncing the search with 300ms, to not call API too often
@@ -45,8 +45,8 @@ export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
   }, [searchTerm, debouncedFetchResults]);
 
   return (
-    <>
-      {" "}
+    <div className="flex mb-10">
+     
       <div className="grid w-full max-w-lg items-center gap-1.5 mt-5 mr-10">
         <Label htmlFor="zitat">Enter Zitat</Label>
         <Input
@@ -75,6 +75,6 @@ export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
           </SelectContent>
         </Select>
       </div>
-    </>
+    </div>
   );
 };
