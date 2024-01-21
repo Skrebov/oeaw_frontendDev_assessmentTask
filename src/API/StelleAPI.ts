@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { searchType } from '@/Interface/StelleTypes';
 
-const searchStelle = async (zitat: string) => {
-    return axios.get(`https://mmp.acdh-dev.oeaw.ac.at/api/stelle/?zitat=${zitat}&zitat_lookup=icontains`).then(response => {return response.data}).catch(
+const searchStelle = async (searchInput: searchType) => {
+    return axios.get(`https://mmp.acdh-dev.oeaw.ac.at/api/stelle/?zitat=${searchInput.zitat}&zitat_lookup=icontains&limit=${searchInput.limit}`).then(response => {return response.data}).catch(
         (error) => {
             throw new Error(error.response.data.message || 'Failed to search Stelle');
     }

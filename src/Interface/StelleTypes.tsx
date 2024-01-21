@@ -14,3 +14,8 @@ export interface Stelle {
 interface key_word {
     stichwort: string[]
 }
+
+export interface searchType {
+    zitat: string,
+    limit: string
+}

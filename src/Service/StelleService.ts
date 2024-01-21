@@ -1,10 +1,10 @@
 import { StelleAPI } from "@/API/StelleAPI";
 import { ActivityService } from "./ActivityService";
-import { StellenResult } from "@/Interface/StelleTypes";
+import { StellenResult, searchType } from "@/Interface/StelleTypes";
 
 
-const searchStelle = async (zitat:string) => {
-    return StelleAPI.searchStelle(zitat).then(
+const searchStelle = async (searchInput: searchType) => {
+    return StelleAPI.searchStelle(searchInput).then(
         result => {
             return result;
         }

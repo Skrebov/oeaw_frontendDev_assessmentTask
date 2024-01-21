@@ -6,9 +6,8 @@ import { ResultTable } from "./components/ResultTable";
 import { StellenResult, Stelle } from "./Interface/StelleTypes";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [response, setResponse] = useState<StellenResult>();
-
+   
   return (
     <div className="flex flex-col justify-center mt-6 items-center">
       <h1 className="text-3xl text-center">Search Stelle</h1>

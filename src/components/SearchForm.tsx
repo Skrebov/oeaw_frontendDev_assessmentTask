@@ -17,47 +17,49 @@ type Props = {
   onFetch: (data: any) => void;
 };
 export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [limit, setLimit] = useState("10");
+  const [zitat, setZitat] = useState("");
+  const [limit, setLimit] = useState("20");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    setZitat(e.target.value);
   };
 
   const fetchResults = async () => {
-    onFetch(StelleService.transformData(await StelleService.searchStelle(searchTerm)));
+    
+    onFetch(StelleService.transformData(await StelleService.searchStelle({zitat, limit})));
   };
 
   //debouncing the search with 300ms, to not call API too often
   const debouncedFetchResults = useMemo(
     () => debounce(fetchResults, 300),
-    [searchTerm]
+    [zitat, limit]
   );
 
   //cancelling the debouncing when leaving the page
   useEffect(() => {
-    if (searchTerm) {
+    if (zitat) {
       debouncedFetchResults();
     }
     return () => {
       debouncedFetchResults.cancel();
     };
-  }, [searchTerm, debouncedFetchResults]);
+  }, [zitat, debouncedFetchResults]);
+
 
   return (
-    <div className="flex mb-10">
+    <div className="flex mb-10 justify-between mt-10">
      
-      <div className="grid w-full max-w-lg items-center gap-1.5 mt-5 mr-10">
+      <div className="grid w-full max-w-lg items-center gap-1.5 mr-10">
         <Label htmlFor="zitat">Enter Zitat</Label>
         <Input
           type="text"
-          value={searchTerm}
+          value={zitat}
           onChange={handleChange}
           id="zitat"
           placeholder="Zitat"
         />
       </div>
-      <div className="grid w-full max-w-lg items-center gap-1.5 mt-5 mr-10">
+      <div className="grid items-center gap-1.5">
         <Label htmlFor="zitat">Search Limit</Label>
         <Select value={limit} onValueChange={setLimit}>
           <SelectTrigger className="w-[180px]">
