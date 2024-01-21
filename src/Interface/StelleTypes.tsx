@@ -9,6 +9,8 @@ export interface Stelle {
     id: number,
     display_label: string,
     key_word: key_word
+    text_start_date: string,
+    text_end_date: string
 }
 
 interface key_word {

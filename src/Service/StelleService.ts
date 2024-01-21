@@ -26,7 +26,9 @@ const transformData = (data: any): StellenResult => {
             display_label: item.display_label,
             key_word: {
                 stichwort: item.key_word.map((kw: any) => kw.stichwort)
-            }
+            },
+            text_start_date: item.text.start_date,
+            text_end_date: item.text.end_date
         }))
     };
 };

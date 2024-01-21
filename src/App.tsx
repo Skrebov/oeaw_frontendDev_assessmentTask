@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { SearchForm } from "./components/SearchForm";
 import { ResultTable } from "./components/ResultTable";
-import { StellenResult, Stelle } from "./Interface/StelleTypes";
+import { StellenResult} from "./Interface/StelleTypes";
 
 function App() {
   const [response, setResponse] = useState<StellenResult>();
