@@ -10,7 +10,8 @@ export interface Stelle {
     display_label: string,
     key_word: key_word
     text_start_date: string,
-    text_end_date: string
+    text_end_date: string,
+    authors: string[]
 }
 
 interface key_word {
