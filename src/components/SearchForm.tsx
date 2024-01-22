@@ -12,6 +12,7 @@ import {
 import { FunctionComponent, useEffect, useMemo, useState } from "react";
 import { StelleService } from "@/Service/StelleService";
 import debounce from "lodash.debounce";
+import { on } from "events";
 
 type Props = {
   onFetch: (data: any) => void;
@@ -22,6 +23,10 @@ export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setZitat(e.target.value);
+    //let the table disappear if the search term is deleted
+    if (e.target.value === "") {
+      onFetch(undefined);
+    }
   };
 
   const fetchResults = async () => {
