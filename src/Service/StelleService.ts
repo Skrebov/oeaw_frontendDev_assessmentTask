@@ -39,7 +39,7 @@ const transformData = (data: any): StellenResult => {
     }
 
     if (data.count === 0) {
-      throw new Error("No entries found!");
+      ActivityService.displayErrorMessage("No entries found!");
     }
 
     return {
