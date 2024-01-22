@@ -25,8 +25,11 @@ export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
   };
 
   const fetchResults = async () => {
-    
-    onFetch(StelleService.transformData(await StelleService.searchStelle({zitat, limit})));
+    onFetch(
+      StelleService.transformData(
+        await StelleService.searchStelle({ zitat, limit })
+      )
+    );
   };
 
   //debouncing the search with 300ms, to not call API too often
@@ -35,20 +38,19 @@ export const SearchForm: FunctionComponent<Props> = ({ onFetch }) => {
     [zitat, limit]
   );
 
-  //cancelling the debouncing when leaving the page
+  //fetching new results whenever the zitat changes
   useEffect(() => {
     if (zitat) {
       debouncedFetchResults();
     }
+    //cancelling the debouncing when leaving the page
     return () => {
       debouncedFetchResults.cancel();
     };
   }, [zitat, debouncedFetchResults]);
 
-
   return (
     <div className="flex mb-10 justify-between mt-10">
-     
       <div className="grid w-full max-w-lg items-center gap-1.5 mr-10">
         <Label htmlFor="zitat">Enter Zitat</Label>
         <Input
